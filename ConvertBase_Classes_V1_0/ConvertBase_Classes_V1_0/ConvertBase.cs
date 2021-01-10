@@ -37,7 +37,7 @@ namespace ConvertBase_Classes_V1_0
                     double base_Count = binary_Terms.Length;
                     binary_Value = $"{binary_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{binary_Value}";
                     decimal_Value = (decimal_Value - (decimal_Value % base_Count)) / base_Count;
-                    if (decimal_Value < base_Count) { binary_Value = $"{binary_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{binary_Value}"; break; }
+                    if (decimal_Value < base_Count) { binary_Value = Convert.ToInt32(decimal_Value % base_Count) == 0 ? binary_Value : $"{binary_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{binary_Value}"; break; }
                 }
                 return binary_Value;
             }
@@ -60,7 +60,7 @@ namespace ConvertBase_Classes_V1_0
                     double base_Count = octal_Terms.Length;
                     octal_Value = $"{octal_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{octal_Value}";
                     decimal_Value = (decimal_Value - (decimal_Value % base_Count)) / base_Count;
-                    if (decimal_Value < base_Count) { octal_Value = $"{octal_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{octal_Value}"; break; }
+                    if (decimal_Value < base_Count) { octal_Value = Convert.ToInt32(decimal_Value % base_Count) == 0 ? octal_Value : $"{octal_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{octal_Value}"; break; }
                 }
                 return octal_Value;
             }
@@ -91,7 +91,7 @@ namespace ConvertBase_Classes_V1_0
                     double base_Count = hexadecimal_Terms.Length;
                     hexadecimal_Value = $"{hexadecimal_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{hexadecimal_Value}";
                     decimal_Value = (decimal_Value - (decimal_Value % base_Count)) / base_Count;
-                    if (decimal_Value < base_Count) { hexadecimal_Value = $"{hexadecimal_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{hexadecimal_Value}"; break; }
+                    if (decimal_Value < base_Count) { hexadecimal_Value = Convert.ToInt32(decimal_Value % base_Count) == 0 ? hexadecimal_Value : $"{hexadecimal_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{hexadecimal_Value}"; break; }
                 }
                 return hexadecimal_Value;
             }
@@ -142,7 +142,7 @@ namespace ConvertBase_Classes_V1_0
                     double base_Count = trigecimal_Terms.Length;
                     trigecimal_Value = $"{trigecimal_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{trigecimal_Value}";
                     decimal_Value = (decimal_Value - (decimal_Value % base_Count)) / base_Count;
-                    if (decimal_Value < base_Count) { trigecimal_Value = $"{trigecimal_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{trigecimal_Value}"; break; }
+                    if (decimal_Value < base_Count) { trigecimal_Value = Convert.ToInt32(decimal_Value % base_Count) == 0 ? trigecimal_Value : $"{trigecimal_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{trigecimal_Value}"; break; }
                 }
                 return trigecimal_Value;
             }
@@ -220,7 +220,7 @@ namespace ConvertBase_Classes_V1_0
 
                     sexagecimal_Value = $"{sexagecimal_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{sexagecimal_Value}";
                     decimal_Value = (decimal_Value - (decimal_Value % base_Count)) / base_Count;
-                    if (decimal_Value < base_Count) { sexagecimal_Value = $"{sexagecimal_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{sexagecimal_Value}"; break; }
+                    if (decimal_Value < base_Count) { sexagecimal_Value = Convert.ToInt32(decimal_Value % base_Count) == 0 ? sexagecimal_Value : $"{sexagecimal_Terms[Convert.ToInt32(decimal_Value % base_Count)]}{sexagecimal_Value}"; break; }
                 }
                 return sexagecimal_Value;
 
@@ -1001,40 +1001,27 @@ namespace ConvertBase_Classes_V1_0
             }
             return byte_Value.ToArray();
         }
-
-
     }
 
     public static class Enums
     {
         /// <summary>
-        /// Numerations systens where you can choice for convert your value:        
+        /// Numerations systens where you can choice for convert your value:
+        /// <para>Binary: base value 2 (0 and 1)</para>
+        /// <para>Octal: base value 8 (0, ..., 7)</para>
+        /// <para>Decimal: base value 10 (0, ..., 9)</para>
+        /// <para>Hexadecimal: base value 16 (0, ..., F)</para>
+        /// <para>Trigecimal: base value 35 (0, ..., 9, A, ..., Z)</para>
+        /// <para>Sexagecimal: base value 61 (0, ..., 9,a, ..., z,A, ..., Z)</para>      
+        /// <para>Alphabetic: base value 27 (Empty,A, ..., Z)</para>
         /// </summary>
         public enum NumerationSystem
         {
-            /// <summary>
-            /// Binary: base value 2 (0 and 1)
-            /// </summary>
             Binary,
-            /// <summary>
-            /// Octal: base value 8 (0, ..., 7)
-            /// </summary>
             Octal,
-            /// <summary>
-            /// Decimal: base value 10 (0, ..., 9)
-            /// </summary>
             Decimal,
-            /// <summary>
-            /// Hexadecimal: base value 16 (0, ..., F)
-            /// </summary>
             Hexadecimal,
-            /// <summary>
-            /// Trigecimal: base value 35 (0, ..., 9, A, ..., Z)
-            /// </summary>
             Trigecimal,
-            /// <summary>
-            /// Sexagecimal: base value 61 (0, ..., 9,a, ..., z,A, ..., Z)
-            /// </summary>
             Sexagecimal
         }
     }
